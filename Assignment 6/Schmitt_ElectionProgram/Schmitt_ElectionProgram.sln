@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schmitt_ElectionProgram", "Schmitt_ElectionProgram.csproj", "{058D9715-2EBF-4267-8129-10A31827173E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{058D9715-2EBF-4267-8129-10A31827173E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{058D9715-2EBF-4267-8129-10A31827173E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{058D9715-2EBF-4267-8129-10A31827173E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{058D9715-2EBF-4267-8129-10A31827173E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8451D00A-6DD4-44C0-8100-26178FDBEB43}
+	EndGlobalSection
+EndGlobal
