@@ -1,7 +1,4 @@
-﻿using Schmitt_ElectionProgram.Schmitt_StudentStudyApp;
-using System;
-
-namespace ElectionApp
+﻿namespace Schmitt_ElectionProgram
 {
     internal class Schmitt_ElectionProgram
     {
