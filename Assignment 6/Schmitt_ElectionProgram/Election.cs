@@ -1,33 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Schmitt_ElectionProgram
 {
     internal class Election
     {
-        private const int NUMBER_OF_CANADATES = 2;
+        private const int NUMBER_OF_CANADATES = 5;
 
-        private string[] canadatesNames;
-        private int[] votes;
+        private string[] canadatesNames = new string[NUMBER_OF_CANADATES];
+        private int[] votes = new int[NUMBER_OF_CANADATES];
 
-        internal int P_NUMBER_OF_CANADATES { get; }
+        internal int P_NUMBER_OF_CANADATES { get { return NUMBER_OF_CANADATES; } }
 
-        internal Election()
-        {
-
-        }
+        /// <summary>
+        /// Blank Constrcutor added in assignment reqs (this does nothing)
+        /// </summary>
+        internal Election() { }
 
         internal string FindWinner()
         {
-            if (votes[0] > votes[1])
+            string winner = string.Empty;
+            int currentMaxVotes = 0;
+
+            for(int i = 0; i < NUMBER_OF_CANADATES; i++)
             {
-                return canadatesNames[0];
+                if (votes[i] > currentMaxVotes)
+                {
+                    currentMaxVotes = votes[i];
+                    winner = canadatesNames[i];
+                }
             }
 
-            return canadatesNames[1];
+            return winner;
         }
 
         internal string GetCanadateName(int index)
