@@ -8,7 +8,10 @@ namespace Schmitt_FarmerChickenFoxGrain
         {
             Info.DisplayInfo("Assignment 7 | Farmer Chicken Grain Game");
 
-            Farmer f = new Farmer();
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+
+            FarmerUI.PlayGame();
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();

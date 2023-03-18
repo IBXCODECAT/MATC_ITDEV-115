@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Collections;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Schmitt_FarmerChickenFoxGrain
 {
     internal static class FarmerUI
     {
+        //Store graphic element heights dynamically (dynamic graphics settings)
         private static int BANK_HEIGHT = 8;
         private static int RIVER_HEIGHT = 7;
 
-        const int EDGE_ITEM_OFFSET = 10;
+        //Define display settings
+        const int EDGE_ITEM_OFFSET = 10, ITEM_SPACING = 5;
 
-        const int ITEM_SPACING = 5;
+        //Define game data
+        const string FOX = "fox", CHICKEN = "chicken", GRAIN = "grain";
 
         /// <summary>
         /// Display the game state
@@ -92,9 +92,9 @@ namespace Schmitt_FarmerChickenFoxGrain
         }
 
         /// <summary>
-        /// Writes the north bank and sets the global BANK_HEIGHT scalable to window size
+        /// Displays the graphic element "north bank"
         /// </summary>
-        internal static void DisplayNorthBank()
+        private static void DisplayNorthBank()
         {
             //Dynamiclly change bank and river height based on window size
             BANK_HEIGHT = Console.WindowHeight / 4;
@@ -104,7 +104,6 @@ namespace Schmitt_FarmerChickenFoxGrain
             if (BANK_HEIGHT < 1) BANK_HEIGHT = 1;
             if (RIVER_HEIGHT < 1) RIVER_HEIGHT = 1;
 
-            Console.Clear();
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.DarkGreen;
 
@@ -123,9 +122,9 @@ namespace Schmitt_FarmerChickenFoxGrain
         }
 
         /// <summary>
-        /// Writes the river
+        /// Displays the graphic element "river"
         /// </summary>
-        internal static void DisplayRiver()
+        private static void DisplayRiver()
         {
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -145,9 +144,9 @@ namespace Schmitt_FarmerChickenFoxGrain
         }
 
         /// <summary>
-        /// Writes the south bank
+        /// Displays the graphic element "south bank"
         /// </summary>
-        internal static void DisplaySouthBank()
+        private static void DisplaySouthBank()
         {
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -169,20 +168,133 @@ namespace Schmitt_FarmerChickenFoxGrain
         internal static void DisplayWelcome()
         {
             Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Black;
+
+            Console.WriteLine("GAME INSTRUCTIONS (PRESS <ENTER> TO CONTINUE!\n\n");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("This game is known as \"the farmer game\". It is a popular logic puzzle for programmers to recreate.");
+            Console.WriteLine("The object of the game is to get the farmer, fox, chicken, and grain to the south side of the river.");
+            Console.WriteLine("Sounds easy right? Well this task is made very difficult for farmer john because of the following:\n");
+
+            Console.WriteLine("- If the chicken and grain are left unsupervised, the chicken will eat the grain.");
+            Console.WriteLine("- If the fox and chicken are left unsupervised, the fox will eat the chicken.");
+
+            Console.WriteLine("\n\nYour task is to help farmer john bring all of his food and livestock across the river without incident.");
+
+            SystemSounds.Exclamation.Play();
+
+            Console.ReadKey();
         }
 
+        /// <summary>
+        /// Plays the game, sets the intial game state, and sets the global dynamic graphics settings
+        /// </summary>
         internal static void Play()
         {
+            Farmer farmer = new Farmer();
+            
+            while(true)
+            {
+                //Display Game Elements
+                Console.Clear();
+                DisplaySouthBank();
+                DisplayRiver();
+                DisplayNorthBank();
+                DisplayGameState(farmer);
 
+                //Play a sound when the board has finished buffering
+                SystemSounds.Hand.Play();
+
+                //Make a move
+                bool moveInvalid = true;
+                while(moveInvalid)
+                {
+                    //Get move info
+                    string move = PromptForMove();
+                    string moveTest = farmer.Move(move);
+
+                    //Check move validity
+                    if (moveTest.Equals("valid"))
+                    {
+                        moveInvalid = false;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid Move \"" + move + "\". The farmer needs to be on the other side of the rvier to move this item.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                }
+
+                //Have animals eat food
+                string ateFood = farmer.AnimalAteFood();
+
+                //If the animals ate some sort of food
+                if(!ateFood.Equals(string.Empty))
+                {
+                    //Redisplay the game state
+                    Console.Clear();
+                    DisplayNorthBank();
+                    DisplayRiver();
+                    DisplaySouthBank();
+                    DisplayGameState(farmer);
+
+                    //Display the loss message/condition
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.WriteLine(ateFood);
+
+                    break;
+                }
+
+                //Did we win?
+                if (farmer.DetermineWin())
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                    Console.WriteLine("YOU DID IT!");
+
+                    break;
+                }
+            }
         }
 
+        /// <summary>
+        /// Handles the logic for the "Play - Play Again" loop
+        /// </summary>
         internal static void PlayGame()
         {
+            //Display the welcome message/instructions
+            DisplayWelcome();
 
+            //Game Loop
+            bool playAgain = true;
+            do
+            {
+                //Play the game
+                Play();
+
+                //Play again?
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Game Over, would you like to play again [default Y](Y/N)?: ");
+                Console.BackgroundColor = ConsoleColor.Black;
+                string input = Console.ReadLine().ToUpper();
+
+                if (input.Equals("N"))
+                {
+                    playAgain = false;
+                }
+
+            }
+            while (playAgain);
         }
 
         internal static string PromptForMove()
         {
+            Console.SetCursorPosition(0, BANK_HEIGHT + RIVER_HEIGHT + BANK_HEIGHT + 2);
+
             Console.WriteLine("Choose the next item the farmer should move. If you wish to choose nothing, press the enter key: ");
 
             SystemSounds.Exclamation.Play();
