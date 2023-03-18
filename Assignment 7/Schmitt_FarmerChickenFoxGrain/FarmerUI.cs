@@ -251,6 +251,13 @@ namespace Schmitt_FarmerChickenFoxGrain
                 //Did we win?
                 if (farmer.DetermineWin())
                 {
+                    //Redisplay the game state
+                    Console.Clear();
+                    DisplayNorthBank();
+                    DisplayRiver();
+                    DisplaySouthBank();
+                    DisplayGameState(farmer);
+
                     Console.BackgroundColor = ConsoleColor.DarkGreen;
                     Console.ForegroundColor = ConsoleColor.White;
 
