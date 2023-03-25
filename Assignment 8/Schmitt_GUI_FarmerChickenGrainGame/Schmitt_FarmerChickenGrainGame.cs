@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Schmitt_GUI_FarmerChickenGrainGame
 {
-    internal static class Program
+    internal static class Schmitt_FarmerChickenGrainGame
     {
         /// <summary>
         /// The main entry point for the application.
@@ -17,6 +17,8 @@ namespace Schmitt_GUI_FarmerChickenGrainGame
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Game());
+
+
         }
     }
 }
