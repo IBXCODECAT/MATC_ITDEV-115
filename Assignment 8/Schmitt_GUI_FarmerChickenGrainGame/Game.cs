@@ -12,20 +12,41 @@ namespace Schmitt_GUI_FarmerChickenGrainGame
 {
     public partial class Game : Form
     {
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Normal;
+        }
+
         public Game()
         {
             InitializeComponent();
+            Farmer.Click += Farmer_Click;
+            Fox.Click += Fox_Click;
+            Chicken.Click += Chicken_Click;
+            Grain.Click += Grain_Click;
+
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Farmer_Click(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Maximized;
-            
+            Console.WriteLine("Farmer Clicked");
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void Fox_Click(object sender, EventArgs e)
         {
-
+            Console.WriteLine("Fox Clicked");
         }
+
+        private void Chicken_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Chicken Clicked");
+        }
+
+        private void Grain_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Grain Clicked");
+        }
+
+        private void Water_Click(object sender, EventArgs e) { }
     }
 }
