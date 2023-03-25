@@ -26,16 +26,37 @@ namespace Schmitt_GUI_FarmerChickenGrainGame
             Fox.Click += Fox_Click;
             Chicken.Click += Chicken_Click;
             Grain.Click += Grain_Click;
+            NewGame.Click += NewGame_Click;
+        }
 
+        private void NewGame_Click(object sender, EventArgs e)
+        {
+            //Reset game data
+            FarmerUI.Reset();
+
+            //Reset game board
+            UpdateFarmerPosition(FarmerUI.GetFarmerPosition());
+            MoveFox(FarmerUI.GetFoxPosition());
+            MoveChicken(FarmerUI.GetChickenPosition());
+            MoveGrain(FarmerUI.GetGrainPosition());
+
+            //Reset disabled items
+            DisableUnreachableItems();
+
+            //Hide win loss text
+            WinLoss.Enabled = false;
+            WinLoss.Visible = false;
+
+            //Hide new game button
+            NewGame.Enabled = false;
+            NewGame.Visible = false;
         }
 
         /// <summary>
         /// Updates the farmer's position
         /// </summary>
-        private void UpdateFarmerPosition()
+        private void UpdateFarmerPosition(bool farmerPos)
         {
-            bool farmerPos = FarmerUI.GetAndUpdateFarmerPosition();
-
             if (farmerPos)
             {
                 //Move farmer
@@ -56,28 +77,79 @@ namespace Schmitt_GUI_FarmerChickenGrainGame
             bool farmerPos = FarmerUI.GetFarmerPosition();
 
             //Enable/Disable items
+            Farmer.Enabled = true;
             Fox.Enabled = farmerPos == FarmerUI.GetFoxPosition();
             Chicken.Enabled = farmerPos == FarmerUI.GetChickenPosition();
             Grain.Enabled = farmerPos == FarmerUI.GetGrainPosition();
         }
 
-        //If clicked only update the farmer's position
-        private void Farmer_Click(object sender, EventArgs e)
+        private void DisableAll()
         {
-            Console.WriteLine("Farmer Clicked");
-
-            UpdateFarmerPosition();
-            DisableUnreachableItems();
+            Farmer.Enabled = false;
+            Fox.Enabled = false;
+            Chicken.Enabled = false;
+            Grain.Enabled = false;
         }
 
-        //If clicked update the farmer and fox position
-        private void Fox_Click(object sender, EventArgs e)
+        private void DetermineWin()
         {
-            Console.WriteLine("Fox Clicked");
+            bool farmerPos = FarmerUI.GetFarmerPosition();
+            bool foxPos = FarmerUI.GetFoxPosition();
+            bool chickenPos = FarmerUI.GetChickenPosition();
+            bool grainPos = FarmerUI.GetGrainPosition();
 
-            UpdateFarmerPosition();
+            if (foxPos && chickenPos && grainPos) 
+            {
+                WinLoss.Enabled = true;
+                WinLoss.Text = "You Win! Press new game to play again!";
+                WinLoss.Visible = true;
 
-            if (FarmerUI.GetAndUpdateFoxPosition())
+                NewGame.Enabled = true;
+                NewGame.Visible = true;
+
+                DisableAll();
+                return;
+            }
+            
+
+            if (foxPos != farmerPos && chickenPos != farmerPos)
+            {
+                WinLoss.Enabled = true;
+                WinLoss.Text = "The fox ate the chicken and you lost!";
+                WinLoss.Visible = true;
+
+                NewGame.Enabled = true;
+                NewGame.Visible = true;
+
+                DisableAll();
+                return;
+            }
+            
+
+            if(chickenPos != farmerPos && grainPos != farmerPos)
+            {
+                WinLoss.Enabled = true;
+                WinLoss.Text = "The chicken ate the grain and you lost!";
+                WinLoss.Visible = true;
+
+                NewGame.Enabled = true;
+                NewGame.Visible = true;
+
+                DisableAll();
+                return;
+            }
+
+            WinLoss.Enabled = false;
+            WinLoss.Text = string.Empty;
+            WinLoss.Visible = false;
+
+            NewGame.Enabled = false;
+            NewGame.Visible = false;
+        }
+        
+        private void MoveFox(bool pos)
+        {
+            if (pos)
             {
                 Fox.Location = new Point(Fox.Location.X, Height - (IMAGE_OFFSET + Fox.Height + IMAGE_OFFSET));
             }
@@ -85,8 +157,52 @@ namespace Schmitt_GUI_FarmerChickenGrainGame
             {
                 Fox.Location = new Point(Fox.Location.X, IMAGE_OFFSET);
             }
+        }
 
+        private void MoveChicken(bool pos)
+        {
+            if (pos)
+            {
+                Chicken.Location = new Point(Chicken.Location.X, Height - (IMAGE_OFFSET + Chicken.Height + IMAGE_OFFSET));
+            }
+            else
+            {
+                Chicken.Location = new Point(Chicken.Location.X, IMAGE_OFFSET);
+            }
+        }
+
+        private void MoveGrain(bool pos)
+        {
+            if (pos)
+            {
+                Grain.Location = new Point(Grain.Location.X, Height - (IMAGE_OFFSET + Grain.Height + IMAGE_OFFSET));
+            }
+            else
+            {
+                Grain.Location = new Point(Grain.Location.X, IMAGE_OFFSET);
+            }
+        }
+
+        //If clicked only update the farmer's position
+        private void Farmer_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Farmer Clicked");
+
+            UpdateFarmerPosition(FarmerUI.GetAndUpdateFarmerPosition());
             DisableUnreachableItems();
+
+            DetermineWin();
+        }
+
+        //If clicked update the farmer and fox position
+        private void Fox_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Fox Clicked");
+
+            UpdateFarmerPosition(FarmerUI.GetAndUpdateFarmerPosition());
+            MoveFox(FarmerUI.GetAndUpdateFoxPosition());
+            DisableUnreachableItems();
+            DetermineWin();
         }
 
 
@@ -95,18 +211,10 @@ namespace Schmitt_GUI_FarmerChickenGrainGame
         {
             Console.WriteLine("Chicken Clicked");
 
-            UpdateFarmerPosition();
-
-            if (FarmerUI.GetAndUpdateChickenPosition())
-            {
-                Chicken.Location = new Point(Chicken.Location.X, Height - (IMAGE_OFFSET + Chicken.Height + IMAGE_OFFSET));
-            }
-            else
-            {
-                Chicken.Location = new Point(Chicken.Location.X, IMAGE_OFFSET);
-            }
-
+            UpdateFarmerPosition(FarmerUI.GetAndUpdateFarmerPosition());
+            MoveChicken(FarmerUI.GetAndUpdateChickenPosition());
             DisableUnreachableItems();
+            DetermineWin();
         }
 
 
@@ -115,18 +223,10 @@ namespace Schmitt_GUI_FarmerChickenGrainGame
         {
             Console.WriteLine("Grain Clicked");
 
-            UpdateFarmerPosition();
-
-            if (FarmerUI.GetAndUpdateGrainPosition())
-            {
-                Grain.Location = new Point(Grain.Location.X, Height - (IMAGE_OFFSET + Grain.Height + IMAGE_OFFSET));
-            }
-            else
-            {
-                Grain.Location = new Point(Grain.Location.X, IMAGE_OFFSET);
-            }
-
+            UpdateFarmerPosition(FarmerUI.GetAndUpdateFarmerPosition());
+            MoveGrain(FarmerUI.GetAndUpdateGrainPosition());
             DisableUnreachableItems();
+            DetermineWin();
         }
 
         private void Water_Click(object sender, EventArgs e) { }

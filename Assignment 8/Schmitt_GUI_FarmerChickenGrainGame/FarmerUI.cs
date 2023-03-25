@@ -7,6 +7,13 @@
         private static bool chickenSouth = false;
         private static bool grainSouth = false;
 
+        internal static void Reset()
+        {
+            farmerSouth = false;
+            foxSouth = false;
+            chickenSouth = false;
+            grainSouth = false;
+        }
         
         internal static bool GetAndUpdateFarmerPosition()
         {

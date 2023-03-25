@@ -36,6 +36,8 @@
             this.Fox = new System.Windows.Forms.PictureBox();
             this.Chicken = new System.Windows.Forms.PictureBox();
             this.Grain = new System.Windows.Forms.PictureBox();
+            this.WinLoss = new System.Windows.Forms.TextBox();
+            this.NewGame = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Water)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NorthBank)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SouthBank)).BeginInit();
@@ -127,12 +129,39 @@
             this.Grain.TabIndex = 7;
             this.Grain.TabStop = false;
             // 
+            // WinLoss
+            // 
+            this.WinLoss.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.WinLoss.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.WinLoss.Location = new System.Drawing.Point(55, 267);
+            this.WinLoss.Name = "WinLoss";
+            this.WinLoss.ReadOnly = true;
+            this.WinLoss.Size = new System.Drawing.Size(880, 38);
+            this.WinLoss.TabIndex = 8;
+            this.WinLoss.Text = "No Text";
+            this.WinLoss.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.WinLoss.Visible = false;
+            // 
+            // NewGame
+            // 
+            this.NewGame.Enabled = false;
+            this.NewGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.NewGame.Location = new System.Drawing.Point(393, 311);
+            this.NewGame.Name = "NewGame";
+            this.NewGame.Size = new System.Drawing.Size(187, 97);
+            this.NewGame.TabIndex = 9;
+            this.NewGame.Text = "NEW GAME";
+            this.NewGame.UseVisualStyleBackColor = true;
+            this.NewGame.Visible = false;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(980, 557);
+            this.Controls.Add(this.NewGame);
+            this.Controls.Add(this.WinLoss);
             this.Controls.Add(this.Grain);
             this.Controls.Add(this.Chicken);
             this.Controls.Add(this.Fox);
@@ -156,6 +185,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Chicken)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Grain)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -168,6 +198,8 @@
         private System.Windows.Forms.PictureBox Fox;
         private System.Windows.Forms.PictureBox Chicken;
         private System.Windows.Forms.PictureBox Grain;
+        private System.Windows.Forms.TextBox WinLoss;
+        private System.Windows.Forms.Button NewGame;
     }
 }
 
