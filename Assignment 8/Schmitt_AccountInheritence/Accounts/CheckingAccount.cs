@@ -14,7 +14,7 @@ namespace Schmitt_AccountInheritence.Accounts
         /// <param name="name">The name of this checking acount</param>
         /// <param name="balance">The balance of this checking account</param>
         /// <param name="accountType">The type of this checking account</param>
-        internal CheckingAccount(string name, decimal balance, string accountType)
+        internal CheckingAccount(string name, decimal balance, Type accountType) : base(name, balance, accountType)
         {
 
         }

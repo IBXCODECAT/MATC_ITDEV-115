@@ -13,10 +13,15 @@ namespace Schmitt_AccountInheritence.Accounts
         //Fields
         private int widthdrawCount;
 
-
-        internal SavingsAccount(string name, decimal balance, string accountType)
+        /// <summary>
+        /// Savings account contructor
+        /// </summary>
+        /// <param name="name">The name for this account</param>
+        /// <param name="balance">The balance for this account</param>
+        /// <param name="accountType">The type for this account</param>
+        internal SavingsAccount(string name, decimal balance, Type accountType) : base(name, balance, accountType)
         {
-            
+
         }
 
 
