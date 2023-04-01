@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\Account.cs" />
-    <Compile Include="Account\CheckingAccount.cs" />
-    <Compile Include="Account\SavingsAccount.cs" />
+    <Compile Include="Accounts\Account.cs" />
+    <Compile Include="Accounts\CheckingAccount.cs" />
+    <Compile Include="Accounts\SavingsAccount.cs" />
+    <Compile Include="Bank.cs" />
+    <Compile Include="Input.cs" />
     <Compile Include="Schmitt_Account_Inheritence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

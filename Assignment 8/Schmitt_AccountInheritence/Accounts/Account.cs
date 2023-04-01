@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Schmitt_AccountInheritence.Account
+namespace Schmitt_AccountInheritence.Accounts
 {
     internal class Account
     {
@@ -44,7 +44,12 @@ namespace Schmitt_AccountInheritence.Account
 
         }
 
-        internal void TransferTo(Account account, decimal amount)
+        internal virtual void TransferTo(Account account, decimal amount)
+        {
+
+        }
+
+        internal virtual bool Widthdraw(Account account)
         {
 
         }
