@@ -137,6 +137,7 @@ namespace Schmitt_AccountInheritence
                 foreach (Account.Transaction transaction in account.Transactions)
                 {
                     string transferAmount_formatted = string.Format("{0:C}", transaction.amount);
+                    string balance_formatted = string.Format("{0:C}", transaction.balance);
 
                     sb.Append(accountType.Name);
                     sb.Append(": ");
@@ -178,7 +179,9 @@ namespace Schmitt_AccountInheritence
                             sb.Append(account.AccountHolder);
                             sb.Append("'s ");
                             sb.Append(accountType.Name);
-                            sb.Append(".\n");
+                            sb.Append(" | New Balance: ");
+                            sb.Append(string.Format("{0:C}", transaction.balance));
+                            sb.Append('\n');
                         }
                         else
                         {
@@ -199,7 +202,9 @@ namespace Schmitt_AccountInheritence
                             sb.Append(account.AccountHolder);
                             sb.Append("'s ");
                             sb.Append(accountType.Name);
-                            sb.Append(".\n");
+                            sb.Append(" | New Balance: ");
+                            sb.Append(string.Format("{0:C}", transaction.balance));
+                            sb.Append('\n');
                         }
                     }
                 }
@@ -248,12 +253,97 @@ namespace Schmitt_AccountInheritence
             }
         }
 
-
+        /// <summary>
+        /// Prompts for transfering funds betwen accounts
+        /// </summary>
+        /// <param name="savingsAccount">The savings account for this member</param>
+        /// <param name="checkingAccount">The checking account for this member</param>
         internal static void Transfers(SavingsAccount savingsAccount, CheckingAccount checkingAccount)
         {
-            savingsAccount.TransferTo(checkingAccount, 220);
-            savingsAccount.TransferTo(checkingAccount, 12);
-            checkingAccount.TransferTo(savingsAccount, 5);
+            Console.Clear();
+
+            bool invalid_option = true;
+            bool invalid_amount = true;
+
+            string choice = string.Empty;
+            decimal amount = 0;
+
+            while(invalid_option)
+            {
+                Console.Write("Would you like to transfer savings to checking (s) or checking to savings (c)?\nSelect an option: ");
+                string input = Console.ReadLine().ToUpper();
+
+                //Check input validity
+                if(input.Equals("S") || input.Equals("C"))
+                {
+                    choice = input;
+                    invalid_option = false;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("That is not an option. Expected [s], [c]!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+
+            while(invalid_amount)
+            {
+                Console.Write("Please enter amount to transfer: ");
+
+                string input = Console.ReadLine();
+
+                try
+                {
+                    decimal ret = decimal.Parse(input);
+                    amount = ret;
+                    invalid_amount = false;
+                }
+                catch (FormatException)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Bad input, please enter a number!");
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            string amount_formatted = string.Format("{0:C}", amount);
+
+            sb.Append("\n");
+
+            if (choice.Equals("S"))
+            {
+                sb.Append("Widthdrawing ");
+                sb.Append(amount_formatted);
+                sb.Append(" from checking.\nDepositing ");
+                sb.Append(amount_formatted);
+                sb.Append(" from savings.");
+
+                savingsAccount.TransferTo(checkingAccount, amount);
+            }
+            else
+            {
+                sb.Append("Widthdrawing ");
+                sb.Append(amount_formatted);
+                sb.Append(" from savings.\nDepositing ");
+                sb.Append(amount_formatted);
+                sb.Append(" from checking.");
+
+                checkingAccount.TransferTo(savingsAccount, amount);
+            }
+
+            sb.Append('\n');
+            sb.Append("Checking account balance: ");
+            sb.Append(string.Format("{0:C}", checkingAccount.Balance));
+            sb.Append('\n');
+            sb.Append("Savings account balance: ");
+            sb.Append(string.Format("{0:C}", savingsAccount.Balance));
+            sb.Append('\n');
+            sb.Append(PRESS_ANY_KEY);
+
+            Console.WriteLine(sb.ToString());
+            Console.ReadKey();
+            Console.Clear();
         }
 
         /// <summary>
@@ -270,9 +360,11 @@ namespace Schmitt_AccountInheritence
             sb.Append("\n");
             sb.Append("Your accounts have been created and are ready for transactions!");
             sb.Append("\n");
-            sb.Append("Press [ENTER] to continue...");
+            sb.Append(PRESS_ANY_KEY);
 
             Console.WriteLine(sb.ToString());
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

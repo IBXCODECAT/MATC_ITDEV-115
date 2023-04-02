@@ -38,9 +38,10 @@ namespace Schmitt_AccountInheritence.Accounts
         /// </summary>
         internal struct Transaction
         {
-            internal Account from;
-            internal Account to;
-            internal decimal amount;
+            internal Account from;      //Account sending money
+            internal Account to;        //Account recieving money
+            internal decimal amount;    //Amount sent in transaction
+            internal decimal balance;   //The balance after the transaction was completed
         }
 
         /// <summary>
@@ -81,6 +82,7 @@ namespace Schmitt_AccountInheritence.Accounts
             transaction.from = from;
             transaction.to = to;
             transaction.amount = amount;
+            transaction.balance = balance;
 
             transactionList.Add(transaction);
         }

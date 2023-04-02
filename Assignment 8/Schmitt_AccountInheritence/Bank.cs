@@ -75,15 +75,19 @@ namespace Schmitt_AccountInheritence
         /// </summary>
         internal static void SetupBankingAccounts()
         {
+            //Request account holder name
             string holder = Input.AccountHolder();
 
-            Input.WelcomeMember(holder);
-
+            //Request starting balances
             decimal c_balance = Input.StartingBalance(checking);
             decimal s_balance = Input.StartingBalance(savings);
 
+            //Create accounts for this member
             CreateAccount(holder, c_balance, typeof(CheckingAccount));
             CreateAccount(holder, s_balance, typeof(SavingsAccount));
+
+            //Welcome the member
+            Input.WelcomeMember(holder);
         }
     }
 }
