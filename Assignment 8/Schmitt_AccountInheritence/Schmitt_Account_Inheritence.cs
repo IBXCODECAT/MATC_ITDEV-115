@@ -1,16 +1,16 @@
 ﻿using Schmitt_AccountInheritence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Schmitt_Assignment8
 {
     internal class Schmitt_Account_Inheritence
     {
+        /// <summary>
+        /// Entry point to the console applicaiton
+        /// </summary>
+        /// <param name="args">Console arguments</param>
         private static void Main(string[] args)
         {
+            //Start the banking application
             Bank.BankingApp();
         }
     }
