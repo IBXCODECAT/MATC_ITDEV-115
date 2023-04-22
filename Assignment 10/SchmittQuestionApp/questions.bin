@@ -1,0 +1,32 @@
+::[DOCTYPE-IBX_BIN_PLAINTEXT]
+::[START_STREAM(0)]
+
+::q=Which version of Minecraft is more performant in terms of the render distance-game clock speed ratio?  
+::c=Minecraft Bedrock Edition (The version mainly written in C++ by Jens prior to Microsoft purchasing Minecraft)
+::a=Minecraft Java Edition (The version mainly written in Java by Markus Notch Person prior to Microsoft purchasing Minecraft)
+::a=Minecraft Legacy Console (The version that was written by 4JStudios in Java and discontinued after Microsoft purchased Minecraft)
+::a=Minecraft Console (The version that is written in C# by Microsoft)
+::e=Minecraft Bedrock Edition is the most performant version of Minecraft as because Minecraft Bedrock Edition was re-made from the ground up with the express purpose of running on phones, therefore it runs miles better than Java on more powerful hardware such as on a PC. Minecraft Java Edition is the least performant. I recently did a simple test on Java Edition and found that allocating and passing in a block position and using getter methods to read its coordinates was 50 times slower than passing in 3 ints and directly reading them (granted, the actual impact is much less since this assumes that all you do is pass them in and read them but it can easily account for a 2-3x slowdown. Even a mutable block posititon was much slower due to the overheads of getting/setting its private variables indirectly).
+
+::q=Minecraft has the a game mechanic where you can ride a boat accross ice blocks and go travel over 100 blocks per second on some ocasions. How did this feature come to be?
+::c=It was a bug and Mojang Studios decided to keep it in the game because of how fun it was
+::a=It is unintentional and will be patched out of the game soon
+::a=An intern thought it would be funny to implement the feature not realizing it would stay in the release build
+::a=This feature was always in the game as a side effect of ice being slipery and boats not having proper collision.
+::e=Mojang Studios added the better boats in Java Edition 1.9 and players found a bug where using a boat in ice made it go insanely fast. Players liked it so much, Mojang Studios deemed it a feature and marked it as WONTFIX on the bug tracker. Since Mojang Studios must keep feature parity between all editions of Minecraft, they had to purposely implement this on Bedrock Edition, however their Minecraft Bedrock implementation has a bug so hilariously, Mojang Studios' intended bug is not working as intended.
+
+::q=What was the tallest cactus ever found in Minecraft?:
+::c=23 Blocks Tall
+::a=12 Blocks Tall
+::a=3 Blocks Tall
+::a=2 Blocks Tall
+::e=The tallest cactus in Minecraft 1.14.## (so far!) is 23 blocks! 🌵 World seed: 184693195438010998 Coordinates: 16274576 64 10230656 Normal cacti are only 3 block tall. But two (or more!) can occasionally "stack" if they spawn on top of each other.
+
+::q=How does Minecraft Bedrock spawn entities in the Minecraft world compared to java edition?
+::c=Java edition spawns entities around the player in a cube while Minecraft Bedrock spawns entities around the player in a sphere 
+::c=Java edition spawns entities around the player in a sphere while Minecraft Bedrock spawns entities around the player in a cube
+::c=Java edition spawns entities by terrain chunk borders and bedrock does not
+::c=Bedrock spawns entities by terrain chunk borders and java edition does not
+::e=Minecraft Bedrock spawns entities in a spherical patern. The outer edge of the spawnable range is not a pure sphere as it keeps to chunk edges. A simulation distance of 4 world chunks (this is not render distance) is a sphere of 44 block radius for despawning. A sim distance higher and above is restricted horizontally so if the center of a chunk is more than 96 blocks away from the player, then mobs won't spawn in that chunk and others will despawn. vertically, mobs always despawn 128 blocks away from the player. This includes diagnal distances calculated from the square root of the magnitude of all vectors between the player and the entity.
+
+:[END_STREAM]
