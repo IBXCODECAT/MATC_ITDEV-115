@@ -6,8 +6,8 @@ namespace SchmittQuestionApp
     {
         static void Main(string[] args)
         {
-            QuestionBank.ReadQuestionFile();
-            Console.ReadKey();
+            Controller.Welcome();
+            Controller.Play();
         }
     }
 }

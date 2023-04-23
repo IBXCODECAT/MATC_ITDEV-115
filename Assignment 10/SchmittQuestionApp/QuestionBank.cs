@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Runtime.Serialization;
-using System;
-using System.IO.Pipes;
 using System.Text.RegularExpressions;
 
 namespace SchmittQuestionApp
@@ -18,22 +16,22 @@ namespace SchmittQuestionApp
 
         internal static string[] GetAnswers(int index)
         {
-            return new string[0];
+            return questions[index].Answers;
         }
 
         internal static string GetAnswer(int index)
         {
-            return "";
+            return questions[index].Answer;
         }
 
         internal static string GetExplanation(int index)
         {
-            return "";
+            return questions[index].Explanation;
         }
 
         internal static string GetQuestion(int index)
         {
-            return "";
+            return questions[index].Question;
         }
 
         private const string QUESTION_START_MARKER = "::q=";

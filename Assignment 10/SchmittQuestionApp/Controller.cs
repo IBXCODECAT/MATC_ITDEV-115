@@ -4,7 +4,10 @@
     {
         internal static void Play()
         {
-            
+            while(true)
+            {
+
+            }
         }
 
         internal static int PlayAgain()
