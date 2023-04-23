@@ -2,7 +2,7 @@
 ::[START_STREAM(0)]
 
 ::q=Which version of Minecraft is more performant in terms of the render distance-game clock speed ratio?  
-::c=q0_correct_0Minecraft Bedrock Edition (The version mainly written in C++ by Jens prior to Microsoft purchasing Minecraft)
+::a=q0_correct_0=Minecraft Bedrock Edition (The version mainly written in C++ by Jens prior to Microsoft purchasing Minecraft)
 ::a=q0_incorrect_0=Minecraft Java Edition (The version mainly written in Java by Markus Notch Person prior to Microsoft purchasing Minecraft)
 ::a=q0_incorrect_1=Minecraft Legacy Console (The version that was written by 4JStudios in Java and discontinued after Microsoft purchased Minecraft)
 ::a=q0_incorrect_2=Minecraft Console (The version that is written in C# by Microsoft)
@@ -20,7 +20,7 @@
 ::a=q2_incorrect_0=12 Blocks Tall
 ::a=q2_incorrect_1=3 Blocks Tall
 ::a=q2_incorrect_2=4 Blocks Tall
-::e=The tallest cactus in Minecraft 1.14.## (so far!) is 23 blocks! 🌵 World seed: 184693195438010998 Coordinates: 16274576 64 10230656 Normal cacti are only 3 block tall. But two (or more!) can occasionally "stack" if they spawn on top of each other.
+::e=The tallest cactus in Minecraft 1.14.## (so far!) is 23 blocks! World seed is 184693195438010998 | Coordinates are 16274576 64 10230656 | Normal cacti are only 3 block tall. But two (or more!) can occasionally "stack" if they spawn on top of each other.
 
 ::q=How does Minecraft Bedrock spawn entities in the Minecraft world compared to java edition?
 ::a=q3_correct_0=Java edition spawns entities around the player in a cube while Minecraft Bedrock spawns entities around the player in a sphere 

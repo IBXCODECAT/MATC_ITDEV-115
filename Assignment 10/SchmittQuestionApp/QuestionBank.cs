@@ -160,6 +160,7 @@ namespace SchmittQuestionApp
 
             //Create a list of question units
             List<QuestionUnit> question_unit_list = new List<QuestionUnit>();
+            question_unit_list.Clear();
 
             //For every question we have, create a question unit and add it to a questions list
             for (int i = 0; i < NO_OF_QUESTIONS; i++)
@@ -197,14 +198,15 @@ namespace SchmittQuestionApp
                 //Here we update our list of question units to contain the questions we read. the explanation and question strings
                 //are from lists that we got from parsing the file previously.
 
-                question_unit_list.Clear();
                 question_unit_list.Add(new QuestionUnit(questionAnswers, correctAnswer, explanation_list[i], question_strings_list[i]));
             }
 
             //Set the questions we created to the questions variable in this class
             questions = question_unit_list.ToArray();
 
+
             //DEBUG
+            //Console.WriteLine(questions.Length);
             //foreach(QuestionUnit unit in questions) Console.WriteLine(unit.ToString());
 
             return 0;
