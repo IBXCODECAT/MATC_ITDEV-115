@@ -204,10 +204,8 @@ namespace SchmittQuestionApp
             //Set the questions we created to the questions variable in this class
             questions = question_unit_list.ToArray();
 
-            foreach(QuestionUnit unit in questions)
-            {
-                Console.WriteLine(unit.ToString());
-            }
+            //DEBUG
+            //foreach(QuestionUnit unit in questions) Console.WriteLine(unit.ToString());
 
             return 0;
         }
