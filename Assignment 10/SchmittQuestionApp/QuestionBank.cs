@@ -8,10 +8,15 @@ namespace SchmittQuestionApp
 {
     internal static class QuestionBank
     {
+
+        private const string FILENAME = @"questions.bin";
+        private const string REGEX_ANS_PATTERN = @"::a=(.*?)\n";
+        private const string QUESTION_START_MARKER = "::q=";
+        private const string EXPLANATION_START_MARKER = "::e=";
+        private const string END_MARKER = ":";
         private const int NO_OF_ANSWERS = 4;
         private const int NO_OF_QUESTIONS = 4;
 
-        private static string fileName = "";
         private static QuestionUnit[] questions;
 
         internal static string[] GetAnswers(int index)
@@ -34,11 +39,6 @@ namespace SchmittQuestionApp
             return questions[index].Question;
         }
 
-        private const string QUESTION_START_MARKER = "::q=";
-        private const string EXPLANATION_START_MARKER = "::e=";
-        private const string REGEX_ANS_PATTERN = @"::a=(.*?)\n";
-        private const string END_MARKER = ":";
-
         internal static int ReadQuestionFile()
         {
             //Text from the file will be stored here
@@ -50,7 +50,7 @@ namespace SchmittQuestionApp
             //Read the file's contents into data
             try
             {
-                data = File.ReadAllText(@"questions.bin", Encoding.UTF8);
+                data = File.ReadAllText(FILENAME, Encoding.UTF8);
                 //Console.WriteLine(data);                
             }
             catch
