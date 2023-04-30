@@ -34,8 +34,14 @@
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contactDropdown = new System.Windows.Forms.ComboBox();
             this.txtContactSearch = new System.Windows.Forms.Label();
-            this.inpEmail = new System.Windows.Forms.TextBox();
+            this.inpFullName = new System.Windows.Forms.TextBox();
             this.picBox = new System.Windows.Forms.PictureBox();
+            this.inpAddress = new System.Windows.Forms.TextBox();
+            this.inpCity = new System.Windows.Forms.TextBox();
+            this.inpState = new System.Windows.Forms.TextBox();
+            this.inpZip = new System.Windows.Forms.TextBox();
+            this.inpPhone = new System.Windows.Forms.TextBox();
+            this.inpEmail = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
             this.SuspendLayout();
@@ -47,7 +53,7 @@
             this.infoToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1091, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -70,6 +76,7 @@
             this.contactDropdown.Name = "contactDropdown";
             this.contactDropdown.Size = new System.Drawing.Size(121, 21);
             this.contactDropdown.TabIndex = 1;
+            this.contactDropdown.SelectedIndexChanged += new System.EventHandler(this.SelectedContactChanged);
             // 
             // txtContactSearch
             // 
@@ -80,32 +87,99 @@
             this.txtContactSearch.TabIndex = 2;
             this.txtContactSearch.Text = "Search For Contact";
             // 
-            // inpEmail
+            // inpFullName
             // 
-            this.inpEmail.Location = new System.Drawing.Point(154, 40);
-            this.inpEmail.Name = "inpEmail";
-            this.inpEmail.ReadOnly = true;
-            this.inpEmail.Size = new System.Drawing.Size(140, 20);
-            this.inpEmail.TabIndex = 3;
-            this.inpEmail.Text = "Email Address:";
-            this.inpEmail.WordWrap = false;
+            this.inpFullName.Location = new System.Drawing.Point(154, 40);
+            this.inpFullName.Name = "inpFullName";
+            this.inpFullName.ReadOnly = true;
+            this.inpFullName.Size = new System.Drawing.Size(140, 20);
+            this.inpFullName.TabIndex = 3;
+            this.inpFullName.Text = "Full Name";
+            this.inpFullName.WordWrap = false;
             // 
             // picBox
             // 
+            this.picBox.Image = ((System.Drawing.Image)(resources.GetObject("picBox.Image")));
             this.picBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("picBox.InitialImage")));
-            this.picBox.Location = new System.Drawing.Point(271, 105);
+            this.picBox.Location = new System.Drawing.Point(591, 227);
             this.picBox.Name = "picBox";
-            this.picBox.Size = new System.Drawing.Size(446, 271);
+            this.picBox.Size = new System.Drawing.Size(500, 366);
             this.picBox.TabIndex = 4;
             this.picBox.TabStop = false;
+            // 
+            // inpAddress
+            // 
+            this.inpAddress.Location = new System.Drawing.Point(154, 66);
+            this.inpAddress.Name = "inpAddress";
+            this.inpAddress.ReadOnly = true;
+            this.inpAddress.Size = new System.Drawing.Size(140, 20);
+            this.inpAddress.TabIndex = 5;
+            this.inpAddress.Text = "Address";
+            this.inpAddress.WordWrap = false;
+            // 
+            // inpCity
+            // 
+            this.inpCity.Location = new System.Drawing.Point(154, 92);
+            this.inpCity.Name = "inpCity";
+            this.inpCity.ReadOnly = true;
+            this.inpCity.Size = new System.Drawing.Size(140, 20);
+            this.inpCity.TabIndex = 6;
+            this.inpCity.Text = "City";
+            this.inpCity.WordWrap = false;
+            // 
+            // inpState
+            // 
+            this.inpState.Location = new System.Drawing.Point(154, 118);
+            this.inpState.Name = "inpState";
+            this.inpState.ReadOnly = true;
+            this.inpState.Size = new System.Drawing.Size(140, 20);
+            this.inpState.TabIndex = 7;
+            this.inpState.Text = "State";
+            this.inpState.WordWrap = false;
+            // 
+            // inpZip
+            // 
+            this.inpZip.Location = new System.Drawing.Point(154, 144);
+            this.inpZip.Name = "inpZip";
+            this.inpZip.ReadOnly = true;
+            this.inpZip.Size = new System.Drawing.Size(140, 20);
+            this.inpZip.TabIndex = 8;
+            this.inpZip.Text = "Zip Code";
+            this.inpZip.WordWrap = false;
+            // 
+            // inpPhone
+            // 
+            this.inpPhone.Location = new System.Drawing.Point(154, 170);
+            this.inpPhone.Name = "inpPhone";
+            this.inpPhone.ReadOnly = true;
+            this.inpPhone.Size = new System.Drawing.Size(140, 20);
+            this.inpPhone.TabIndex = 9;
+            this.inpPhone.Text = "Phone Number";
+            this.inpPhone.WordWrap = false;
+            // 
+            // inpEmail
+            // 
+            this.inpEmail.Location = new System.Drawing.Point(154, 196);
+            this.inpEmail.Name = "inpEmail";
+            this.inpEmail.ReadOnly = true;
+            this.inpEmail.Size = new System.Drawing.Size(140, 20);
+            this.inpEmail.TabIndex = 10;
+            this.inpEmail.Text = "Email Address";
+            this.inpEmail.WordWrap = false;
             // 
             // WindowsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.picBox);
+            this.ClientSize = new System.Drawing.Size(1091, 595);
             this.Controls.Add(this.inpEmail);
+            this.Controls.Add(this.inpPhone);
+            this.Controls.Add(this.inpZip);
+            this.Controls.Add(this.inpState);
+            this.Controls.Add(this.inpCity);
+            this.Controls.Add(this.inpAddress);
+            this.Controls.Add(this.picBox);
+            this.Controls.Add(this.inpFullName);
             this.Controls.Add(this.txtContactSearch);
             this.Controls.Add(this.contactDropdown);
             this.Controls.Add(this.menuStrip);
@@ -128,8 +202,14 @@
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ComboBox contactDropdown;
         private System.Windows.Forms.Label txtContactSearch;
-        private System.Windows.Forms.TextBox inpEmail;
+        private System.Windows.Forms.TextBox inpFullName;
         private System.Windows.Forms.PictureBox picBox;
+        private System.Windows.Forms.TextBox inpAddress;
+        private System.Windows.Forms.TextBox inpCity;
+        private System.Windows.Forms.TextBox inpState;
+        private System.Windows.Forms.TextBox inpZip;
+        private System.Windows.Forms.TextBox inpPhone;
+        private System.Windows.Forms.TextBox inpEmail;
     }
 }
 

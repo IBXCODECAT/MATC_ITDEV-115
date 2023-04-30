@@ -1,22 +1,42 @@
 [
   {
-    "address": "1555 Froe Street",
-    "city": "Wheeling",
-    "emailAddress": "johndoe24@aol.com",
-    "firstName": "John",
-    "lastName": "Dover",
-    "phoneNumber": "304-313-3636",
-    "state": "West Virginia",
-    "zipCode": "26003"
+    "address": "27 Coolidge St",
+    "city": "Grafton",
+    "emailAddress": "tswift@gmail.com",
+    "firstName": "Tom",
+    "lastName": "Swift",
+    "phoneNumber": "252-756-8867",
+    "state": "WI",
+    "zipCode": "53015"
   },
   {
-    "address": "2206 Half and Half Drive",
-    "city": "Alpaugh",
-    "emailAddress": "mikeraph48@aol.com",
-    "firstName": "Mike",
-    "lastName": "Rafone",
-    "phoneNumber": "304-975-6525",
-    "state": "California",
-    "zipCode": "93219"
+    "address": "1423 Apple Way",
+    "city": "Mequon",
+    "emailAddress": "harold.lloyd@gmail.com",
+    "firstName": "Harold",
+    "lastName": "LLoyd",
+    "phoneNumber": "262-333-1254",
+    "state": "WI",
+    "zipCode": "53010"
+  },
+  {
+    "address": "1818 Fairview Lane",
+    "city": "Milawukee",
+    "emailAddress": "mary@yahoo.com",
+    "firstName": "Mary",
+    "lastName": "Kelly",
+    "phoneNumber": "414-997-7645",
+    "state": "WI",
+    "zipCode": "53202"
+  },
+  {
+    "address": "1522 Walnut Ave.",
+    "city": "Arlington Heights",
+    "emailAddress": "smith@aol.com",
+    "firstName": "Frank",
+    "lastName": "Smith",
+    "phoneNumber": "312-451-5544",
+    "state": "IL",
+    "zipCode": "60004"
   }
 ]
