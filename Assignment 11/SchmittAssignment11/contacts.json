@@ -1,0 +1,24 @@
+{
+    "Contacts": [
+      {
+        "adress": "1555 Froe Street",
+        "city": "Wheeling",
+        "emailAddress": "johndoe24@aol.com",
+        "firstName": "John",
+        "lastName": "Dover",
+        "phoneNumber": "304-313-3636",
+        "state": "West Virginia",
+        "zipCode": "26003"
+      },
+      {
+        "adress": "2206 Half and Half Drive",
+        "city": "Alpaugh",
+        "emailAddress": "mikeraph48@aol.com",
+        "firstName": "Mike",
+        "lastName": "Rafone",
+        "phoneNumber": "304-975-6525",
+        "state": "California",
+        "zipCode": "93219"
+      }
+    ]
+  }
