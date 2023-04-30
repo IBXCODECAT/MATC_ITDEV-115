@@ -112,7 +112,6 @@ namespace ContactsApp
         internal static int ReadContacts()
         {
             string jsonData = string.Empty;
-            List<Contact> contacts = new List<Contact>();
 
             try
             {
@@ -123,11 +122,11 @@ namespace ContactsApp
             if(!string.IsNullOrEmpty(jsonData))
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
-
-                contacts = serializer.Deserialize<List<Contact>>(jsonData);
+                contacts = serializer.Deserialize<List<Contact>>(jsonData).ToArray();
+                return contacts.Length;
             }
-
-            return contacts.Count;
+            
+            return 0;
         }
     }
 }

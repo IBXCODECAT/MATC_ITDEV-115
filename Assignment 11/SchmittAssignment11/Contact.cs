@@ -7,7 +7,7 @@ namespace ContactsApp
     /// </summary>
     
     [Serializable]
-    internal class Contact
+    public class Contact
     {
         #region FIELDS
         private string address;
@@ -20,15 +20,16 @@ namespace ContactsApp
         private string zipCode;
         #endregion FIELDS
 
+        //Propreties have public sets due to the nature of deserialization
         #region PROPRETIES
-        internal string Address { get { return address; } private set { address = value; } }
-        internal string City { get { return city; } private set { city = value; } }
-        internal string EmailAddress { get {  return emailAddress; } private set { emailAddress = value; } }
-        internal string FirstName { get { return firstName;} private set { firstName = value; } }
-        internal string LastName { get { return lastName;} private set { lastName = value; } }
-        internal string PhoneNumber { get {  return phoneNumber; } private set { phoneNumber = value; } }
-        internal string State { get { return state; } private set { state = value; } }
-        internal string ZipCode { get { return zipCode; } private set { zipCode = value; } }
+        public string Address { internal get { return address; } set { address = value; } }
+        public string City { internal get { return city; } set { city = value; } }
+        public string EmailAddress { internal get { return emailAddress; } set { emailAddress = value; } }
+        public string FirstName { internal get { return firstName;} set { firstName = value; } }
+        public string LastName { internal get { return lastName;} set { lastName = value; } }
+        public string PhoneNumber { internal get {  return phoneNumber; } set { phoneNumber = value; } }
+        public string State { internal get { return state; } set { state = value; } }
+        public string ZipCode { internal get { return zipCode; } set { zipCode = value; } }
         #endregion PROPRETIES
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace ContactsApp
         /// <param name="phoneNumber">The phone number for this contact</param>
         /// <param name="state">The state for this contact</param>
         /// <param name="zipCode">The zip code for this contact</param>
-        internal Contact(string address, string city, string emailAddress, string firstName, string lastName, string phoneNumber, string state, string zipCode)
+        public Contact(string address, string city, string emailAddress, string firstName, string lastName, string phoneNumber, string state, string zipCode)
         {
             this.address = address;
             this.city = city;
@@ -53,5 +54,10 @@ namespace ContactsApp
             this.state = state;
             this.zipCode = zipCode;
         }
+
+        /// <summary>
+        /// For some reason we have to add an empty constructor for the javascript deserilizer
+        /// </summary>
+        public Contact() { }
     }
 }
