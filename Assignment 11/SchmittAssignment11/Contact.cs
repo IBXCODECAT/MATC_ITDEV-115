@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactsApp
 {
+    /// <summary>
+    /// Responsible for storing contact data in memory
+    /// </summary>
+    
+    [Serializable]
     internal class Contact
     {
+        #region FIELDS
         private string address;
         private string city;
         private string emailAddress;
@@ -16,15 +18,18 @@ namespace ContactsApp
         private string phoneNumber;
         private string state;
         private string zipCode;
+        #endregion FIELDS
 
-        internal string Address { get { return address; } }
-        internal string City { get { return city; } }
-        internal string EmailAddress { get {  return emailAddress; } }
-        internal string FirstName { get { return firstName;} }
-        internal string LastName { get { return lastName;} }
-        internal string PhoneNumber { get {  return phoneNumber; } }
-        internal string State { get { return state; } }
-        internal string ZipCode { get { return zipCode; } }
+        #region PROPRETIES
+        internal string Address { get { return address; } private set { address = value; } }
+        internal string City { get { return city; } private set { city = value; } }
+        internal string EmailAddress { get {  return emailAddress; } private set { emailAddress = value; } }
+        internal string FirstName { get { return firstName;} private set { firstName = value; } }
+        internal string LastName { get { return lastName;} private set { lastName = value; } }
+        internal string PhoneNumber { get {  return phoneNumber; } private set { phoneNumber = value; } }
+        internal string State { get { return state; } private set { state = value; } }
+        internal string ZipCode { get { return zipCode; } private set { zipCode = value; } }
+        #endregion PROPRETIES
 
         /// <summary>
         /// Constructs a new Contact
