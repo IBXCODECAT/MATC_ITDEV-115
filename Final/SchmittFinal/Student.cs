@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 /******************************
- * Student: Your Name
+ * Student: Nathan Schmitt
  * Purpose: Student Grades -- Arrays
  ******************************/
 
@@ -61,6 +59,7 @@ namespace SchmittFinal
         {
             get { return studentID; }
         }
+
         //accessor mutators //properties
         public string NameFirst
         {
@@ -73,6 +72,7 @@ namespace SchmittFinal
                 nameFirst = value;
             }
         }
+
         public string NameLast
         {
             get  //accessor - getters

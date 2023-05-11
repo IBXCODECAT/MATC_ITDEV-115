@@ -1,31 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SchmittFinal
 {
-    class GradesUI
+    internal static class GradesUI
     {
-        Students myStudentS;
-
-        public void MainMethod()
+        internal static void MainMethod()
         {
-            //instance an object of StudentUI..
-            //Call StudentUI->PopulateStudents..
-            //Verify file was successfully read.
-            //if successfull call DisplayInfo()
-            //else display error message.
 
+            string error = Students.PopulateStudents(@"grades.txt");
+
+            if(string.IsNullOrEmpty(error))
+            {
+                DisplayInfo();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(error);
+                Console.ForegroundColor= ConsoleColor.White;
+            }
         }
 
-        void DisplayInfo()
+        private static void DisplayInfo()
         {
-            Console.WriteLine("Student id\tLast Name\tAverage\tGrade");
+            Console.WriteLine("Student id\t\tLast Name\t\tAverage\t\tGrade");
 
-            for (int index = 0; index < myStudentS.ListLength; index++)
+            for (int index = 0; index < Students.ListLength; index++)
             {
-                Console.WriteLine("{0}\t{1}\t{2}\t{3}", myStudentS.StudentID(index), myStudentS.StudentLastName(index), myStudentS.StudentAverage(index), myStudentS.StudentGrade(index));
+                Console.WriteLine($" {Students.StudentID(index)}\t\t {Students.StudentLastName(index)}   \t\t {Students.StudentAverage(index)}\t\t  {Students.StudentGrade(index)}");
             }
         }
     }

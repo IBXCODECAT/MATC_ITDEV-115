@@ -9,7 +9,16 @@ namespace SchmittFinal
     {
         static void Main(string[] args)
         {
+            Info.DisplayInfo("StudentListFinal");
 
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
+
+            GradesUI.MainMethod();
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
     }
 }

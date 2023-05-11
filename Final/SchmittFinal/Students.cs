@@ -5,28 +5,12 @@ using System.Linq;
 
 namespace SchmittFinal
 {
-    internal class Students
+    internal static class Students
     {
-        private List<Student> studentList;
+        private static List<Student> studentList = new List<Student>();
 
-        public string PopulateStudents(string path)
+        internal static string PopulateStudents(string path)
         {
-            //this is the method you need to implement...NO CONSOLE LOGIC in this file.
-            //use the parameter path for file name, and return an error string!!
-
-            //1) create instance of theStudentList (theStudentList = new List<Student>();)
-            //2) create an instance of the StreamReader Class to read the data from the file named in the variable path
-            //3) Open the File and read line by line using theReadLIne command
-            //4) split the line
-            //5) create one instance of Student, fill in id, first and last through the constructor
-            //6) now loop through remaining fields 3 - 23 for earned and possible and set though method EnterGrade.
-            //7) call CalGrade on the Student object - that sets the average and grade.
-            //8) Add that Student to theStudentList (theStudentList.Add(aStudent);)
-            //9) read next line and loop until null or line = ""
-            //10) Close the file
-
-            //do not forgot to use a Try/Catch block.
-
             //Clear the current list of students
             studentList.Clear();
 
@@ -71,13 +55,13 @@ namespace SchmittFinal
             foreach (string block in blocksRead)
             {
                 //Split the block into string data
-                string[] strData = block.Split('\'');
+                string[] strData = block.Split(',');
 
                 //Declare an integer array to store numeric parsable data with it's length minimalized to the numeric parsable blocks offset
-                int[] intData = new int[strData.Length - numericParsableBlockStartIndex];
+                int[] intData = new int[strData.Length];
 
                 //for each index that can be parsed through the integer parser...
-                for (int i = numericParsableBlockStartIndex; i <= strData.Length; i++)
+                for (int i = numericParsableBlockStartIndex; i < strData.Length; i++)
                 {
                     //Set the value at the integer array's calculated index to the parsed value for the index of the parsable integer
                     intData[i - numericParsableBlockStartIndex] = int.Parse(strData[i]);
@@ -89,44 +73,46 @@ namespace SchmittFinal
                 //For each parsed integer data point in our array of parsed integers
                 for(int i = 0; i < intData.Length; i += numericBatchSize)
                 {
-                    //Enter the data for this object in the appropriate batches
-                    s.EnterGrade(intData[i], intData[i + numericBatchSize - 1]);
+                    //If this is not the last data parsed integer...
+                    if(i < intData.Length - numericBatchSize - 1)
+                    {
+                        //Enter the data for this object in the appropriate batches
+                        s.EnterGrade(intData[i], intData[i + numericBatchSize - 1]);
+                    }
                 }
+
+                s.CalGrade();
 
                 //Add our newly constructed object to the list of constructed objects
                 studentList.Add(s);
             }
 
-            return "Read successfull!";
+            return null;
         }
 
-        public int ListLength
+        internal static int ListLength
         {
             get { return studentList.Count; }
         }
 
-        public string StudentID(int index)
+        internal static string StudentID(int index)
         {
             return studentList.ElementAt(index).ID;
         }
 
-        public string StudentLastName(int index)
+        public static string StudentLastName(int index)
         {
             return studentList.ElementAt(index).NameLast;
         }
 
-        public string StudentGrade(int index)
+        internal static string StudentGrade(int index)
         {
-
             return studentList.ElementAt(index).LetterGrade;
         }
 
-        public float StudentAverage(int index)
+        internal static float StudentAverage(int index)
         {
-
             return studentList.ElementAt(index).Average;
         }
-
     }
-
 }
